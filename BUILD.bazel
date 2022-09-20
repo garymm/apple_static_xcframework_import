@@ -1,0 +1,16 @@
+load(
+    "@build_bazel_rules_apple//apple:apple.bzl",
+    "apple_static_xcframework_import",
+)
+
+apple_static_xcframework_import(
+    name = "MotlenVK",
+    xcframework_imports = glob(["MoltenVK.xcframework/**"]),
+    # Note this causes a different failure if uncommented
+    # has_swift = False,
+)
+
+cc_library(
+    name = "cc_lib",
+    deps = [":MotlenVK"],
+)
